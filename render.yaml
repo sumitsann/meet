@@ -1,0 +1,16 @@
+# One-click deploy on Render: https://render.com → New → Blueprint → pick this repo.
+services:
+  - type: web
+    name: meet
+    runtime: node
+    plan: free
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/ice
+    envVars:
+      - key: TURN_URLS
+        sync: false
+      - key: TURN_USERNAME
+        sync: false
+      - key: TURN_CREDENTIAL
+        sync: false

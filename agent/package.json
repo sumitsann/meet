@@ -1,0 +1,14 @@
+{
+  "name": "meet-control-agent",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Local helper that applies remote mouse/keyboard input from the Meet tab to this computer",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@nut-tree-fork/nut-js": "^4.2.6",
+    "ws": "^8.18.0"
+  }
+}
