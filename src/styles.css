@@ -80,6 +80,7 @@ code { background: #f3f4f6; padding: 1px 4px; border-radius: 4px; font-size: 11p
 .banner > span { flex: 1; }
 .banner.ask { background: #eff6ff; border-color: #dbeafe; }
 .banner.warn { background: var(--warn-soft); border-color: #fde68a; }
+.help-steps { margin: 8px 0 2px; padding-left: 20px; line-height: 1.7; }
 .banner.error { background: var(--danger-soft); border-color: #fecaca; color: var(--danger); }
 
 /* ---------- stage ---------- */

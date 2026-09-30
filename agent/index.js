@@ -12,7 +12,7 @@ import { WebSocketServer } from 'ws';
 import { Button, Key, Point, keyboard, mouse, screen } from '@nut-tree-fork/nut-js';
 
 const PORT = Number(process.env.AGENT_PORT) || 47800;
-const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || 'http://localhost:5173,http://localhost:3001')
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || 'https://meet-rurx.onrender.com,http://localhost:5173,http://localhost:3001')
   .split(',')
   .map((s) => s.trim());
 

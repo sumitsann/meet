@@ -23,6 +23,7 @@ export function Room({ room, name, onLeave }) {
   const [hidden, setHidden] = useState(() => new Set());
   const [copied, setCopied] = useState(false);
   const [audioBlocked, setAudioBlocked] = useState(false);
+  const [agentHelp, setAgentHelp] = useState(false);
 
   useEffect(() => {
     const onBlocked = () => setAudioBlocked(true);
@@ -148,6 +149,8 @@ export function Room({ room, name, onLeave }) {
               <MousePointer2 size={16} />
               <span>
                 <b>{nameOf(id)}</b> wants to control your screen (mouse and keyboard).
+                {me.surface !== 'monitor' &&
+                  " You're sharing a single tab/window — to be controlled, stop and share your Entire screen."}
               </span>
               <button className="btn" onClick={() => m.answerRequest(id, false)}>
                 Deny
@@ -162,7 +165,31 @@ export function Room({ room, name, onLeave }) {
               <MousePointer2 size={16} />
               <span>
                 <b>{controllers.map(nameOf).join(', ')}</b> can control your screen.
-                {state.agent !== 'on' && ' Desktop agent not connected — their input is not being applied.'}
+                {me.surface !== 'monitor' && " You're sharing a tab/window, so clicks will land in the wrong place — share your Entire screen."}
+                {state.agent !== 'on' && (
+                  <>
+                    {' '}Desktop agent not running on this computer — their input is not being applied.{' '}
+                    <button className="link" onClick={() => setAgentHelp(!agentHelp)}>
+                      {agentHelp ? 'Hide steps' : 'How to set it up'}
+                    </button>
+                  </>
+                )}
+                {agentHelp && state.agent !== 'on' && (
+                  <ol className="help-steps">
+                    <li>
+                      Install Node.js (LTS) from <b>nodejs.org</b>.
+                    </li>
+                    <li>
+                      Download this project and open a terminal in its <code>agent</code> folder.
+                    </li>
+                    <li>
+                      Run <code>npm install</code> once, then <code>npm start</code> and leave it open.
+                    </li>
+                    <li>
+                      Click <b>Connect agent</b> here. If Chrome asks to access devices on your local network, click <b>Allow</b>.
+                    </li>
+                  </ol>
+                )}
               </span>
               {state.agent === 'off' && (
                 <button className="btn" onClick={() => m.connectAgent()}>
